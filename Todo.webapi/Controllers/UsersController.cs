@@ -11,55 +11,55 @@ namespace Todo.webapi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TodoItemsController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly TodoAppDBContext _context;
 
-        public TodoItemsController(TodoAppDBContext context)
+        public UsersController(TodoAppDBContext context)
         {
             _context = context;
         }
 
-        // GET: api/TodoItems
+        // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-          if (_context.TodoItems == null)
+          if (_context.Users == null)
           {
               return NotFound();
           }
-            return await _context.TodoItems.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
 
-        // GET: api/TodoItems/5
+        // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TodoItem>> GetTodoItem(int id)
+        public async Task<ActionResult<User>> GetUser(int id)
         {
-          if (_context.TodoItems == null)
+          if (_context.Users == null)
           {
               return NotFound();
           }
-            var todoItem = await _context.TodoItems.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
 
-            if (todoItem == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return todoItem;
+            return user;
         }
 
-        // PUT: api/TodoItems/5
+        // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodoItem(int id, TodoItem todoItem)
+        public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != todoItem.Id)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(todoItem).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +67,7 @@ namespace Todo.webapi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TodoItemExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -80,44 +80,44 @@ namespace Todo.webapi.Controllers
             return NoContent();
         }
 
-        // POST: api/TodoItems
+        // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
+        public async Task<ActionResult<User>> PostUser(User user)
         {
-          if (_context.TodoItems == null)
+          if (_context.Users == null)
           {
-              return Problem("Entity set 'TodoAppDBContext.TodoItems'  is null.");
+              return Problem("Entity set 'TodoAppDBContext.Users'  is null.");
           }
-            _context.TodoItems.Add(todoItem);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
-        // DELETE: api/TodoItems/5
+        // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTodoItem(int id)
+        public async Task<IActionResult> DeleteUser(int id)
         {
-            if (_context.TodoItems == null)
+            if (_context.Users == null)
             {
                 return NotFound();
             }
-            var todoItem = await _context.TodoItems.FindAsync(id);
-            if (todoItem == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.TodoItems.Remove(todoItem);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool TodoItemExists(int id)
+        private bool UserExists(int id)
         {
-            return (_context.TodoItems?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

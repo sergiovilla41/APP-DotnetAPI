@@ -2,14 +2,26 @@ version: '3.4'
 
 services:
   todo-app-api:
-     image: todo-app-api
-     build:
+    image: todo-app-api
+    container_name: todo-app-api
+    build:
       context: C:\Users\ser-9\source\repos\TodoSln\Todo.webapi\
       dockerfile: Dockerfile
-     ports:
-     - "8980:80"
-     networks:
-     - mynetwork
+    ports:
+      - "8980:80"
+    networks:
+      - mynetwork
+
+  Todoappsqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: todoappsqlserver
+    ports:
+      - "14330:1433"
+    environment:
+      - SA_PASSWORD=ABC123456
+      - ACCEPT_EULA=Y
+    networks:
+      - mynetwork
 
 networks:
   mynetwork:
