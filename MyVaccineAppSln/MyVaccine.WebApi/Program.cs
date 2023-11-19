@@ -11,9 +11,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.SetDatabaseConfiguration();
-builder.Services.AddDbContext<MyVaccineDbContext>(options =>
-    options.UseSqlServer(Environment.GetEnvironmentVariable(MyVaccineLiterals.Connection)));
+builder.Services.SetMyVacinneAuthConfigurations();
 
 var app = builder.Build();
 
@@ -26,7 +26,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 

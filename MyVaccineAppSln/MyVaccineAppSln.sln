@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVaccine.WebApi", "MyVaccine.WebApi\MyVaccine.WebApi.csproj", "{6657CAFD-A59B-4127-84A7-D2BB2FCD5CDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyVaccine.WebApi", "MyVaccine.WebApi\MyVaccine.WebApi.csproj", "{6657CAFD-A59B-4127-84A7-D2BB2FCD5CDA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{28CBDC12-3522-417B-9060-BAC8FFBA3907}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
